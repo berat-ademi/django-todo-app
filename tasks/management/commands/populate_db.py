@@ -38,7 +38,7 @@ class Command(BaseCommand):
             self.stdout.write('Creating user profile...')
             Profile.objects.create(
                 user=user,
-                profile_picture='default.jpg'
+                profile_picture='profile_pics/default.jpg'
             )
             self.stdout.write(self.style.SUCCESS('Created profile for testuser'))
 

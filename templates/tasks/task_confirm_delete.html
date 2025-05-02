@@ -2,9 +2,10 @@
 {% block title %}Delete Task{% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <h2>Delete "{{ task.title }}"?</h2>
+    <h2>Delete <strong>"{{ task.title }}"</strong> Task?</h2>
     <form method="post">
         {% csrf_token %}
+        <br>
         <button class="btn btn-danger">Yes, delete</button>
         <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
     </form>
