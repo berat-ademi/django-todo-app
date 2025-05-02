@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Your Tasks</h2>
+  </div>
+
+  <div class="d-flex gap-2 mb-3">
+    <a href="{% url 'task_create' %}" class="btn btn-primary">+ New Task</a>
+    <a href="{% url 'task_status' %}" class="btn btn-secondary">View Completed/Pending</a>
+  </div>
+
+  {% if tasks %}
+<div class="table-responsive"></div>
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Title</th>
+          <th>Notes</th>
+          <th>Due</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+    <tbody>
+    {% for task in tasks %}
+    <tr>
+      <td>
+      <strong>{{ task.title }}</strong>
+      <br>
+      <small class="text-muted">{{ task.description }}</small>
+      </td>
+      <td>{{ task.notes }}</td>
+      <td>{{ task.due_date|date:"M d, Y" }}</td>
+      <td>
+      {{ task.is_completed|yesno:"✅,⏳" }}
+        </td>
+          <td>
+            <div class="d-flex gap-2">
+              <a href="{% url 'task_edit' task.id %}" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{% url 'task_delete' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <p class="text-muted">You have no tasks yet. Create one to get started!</p>
+  {% endif %}
+</div>
+{% endblock %}

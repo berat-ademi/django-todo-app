@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Completed & Pending{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h3 class="mb-3">✅ Completed Tasks</h3>
+  {% if completed %}
+  <ul class="list-group mb-4">
+    {% for task in completed %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ task.title }}
+        <span class="badge bg-success">{{ task.due_date|date:"M d, Y" }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p class="text-muted">No completed tasks yet.</p>
+  {% endif %}
+
+  <h3 class="mt-4 mb-3">⏳ Pending Tasks</h3>
+  {% if pending %}
+  <ul class="list-group">
+    {% for task in pending %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ task.title }}
+        <span class="badge bg-warning text-dark">{{ task.due_date|date:"M d, Y" }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p class="text-muted">No pending tasks.</p>
+  {% endif %}
+
+  <a href="{% url 'dashboard' %}" class="btn btn-primary mt-4">← Back to Dashboard</a>
+</div>
+{% endblock %}

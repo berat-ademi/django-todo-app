@@ -1,0 +1,45 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Django migration files
+*.log
+*.sqlite3
+db.sqlite3
+migrations/
+
+# Django static and media files
+staticfiles/
+media/
+
+# Environment files
+.env
+*.env
+*.local
+*.pyc
+
+# VSCode settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# Virtual environment
+venv/
+.env/
+venv.bak/
+env/
+ENV/
+env.bak/
+
+# MySQL db dumps
+*.sql
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
