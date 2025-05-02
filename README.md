@@ -20,26 +20,29 @@ A simple, user-specific to-do list application built with Django. Authenticated 
 
 1. Clone the repository
 
-   git clone https://github.com/yourusername/todoapp.git
-   cd todoapp
+   `git clone https://github.com/berat-ademi/django-todo-app.git`
+
+   `cd django-todo-app`
 
 2. Create a virtual environment
 
-   python -m venv venv
-   source venv/bin/activate
-   (On Windows: venv\Scripts\activate)
+   `python -m venv venv`
+
+   `source venv/bin/activate`
+
+   (On Windows: `venv\Scripts\activate`)
 
 3. Install dependencies
 
-   pip install -r requirements.txt
+   `pip install -r requirements.txt`
 
 4. Apply migrations
 
-   python manage.py migrate
+   `python manage.py migrate`
 
 5. (Optional) Seed the database with one user and some tasks
 
-   python manage.py populate_db
+   `python manage.py populate_db`
 
    ✅ Creates:
    - user: `testuser`
@@ -50,7 +53,7 @@ A simple, user-specific to-do list application built with Django. Authenticated 
 
 6. Run the development server
 
-   python manage.py runserver
+   `python manage.py runserver`
 
 7. Open in your browser
 
@@ -62,7 +65,7 @@ A simple, user-specific to-do list application built with Django. Authenticated 
 
 Run basic tests with:
 
-   python manage.py test
+   `python manage.py test`
 
 
 ---
@@ -78,6 +81,7 @@ Run basic tests with:
 
 ## 📁 Project Structure
 
+```plaintext
 todolist/                 # Django project folder
 ├── manage.py
 ├── todolist/             # Project settings
@@ -102,6 +106,7 @@ todolist/                 # Django project folder
 ├── static/
 │   └── css/
 │       └── style.css
+```
 
 ---
 
@@ -111,9 +116,9 @@ To access the Django admin panel:
 
 1. Create a superuser (if you haven't already):
 
-   python manage.py createsuperuser
+   `python manage.py createsuperuser`
 
-2. Follow the prompts to set username, email, and password.
+2. Follow the prompts to set `username`, `email`, and `password`.
 
 3. Then visit the admin panel:
 
