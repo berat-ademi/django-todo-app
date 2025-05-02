@@ -10,7 +10,9 @@ migrations/
 
 # Django static and media files
 staticfiles/
-media/
+media/*
+!media/profile_pics/
+!media/profile_pics/default.jpg
 
 # Environment files
 .env
