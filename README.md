@@ -82,30 +82,38 @@ Run basic tests with:
 ## 📁 Project Structure
 
 ```plaintext
-todolist/                 # Django project folder
+django_todo_app/          # Root project folder
 ├── manage.py
-├── todolist/             # Project settings
-│   └── ...
-├── tasks/                # Tasks app
+├── db.sqlite3
+├── README.md
+├── .gitignore
+├── media/                        # For uploaded/profile images
+│   └── profile_pics/
+│       └── default.jpg
+├── static/
+│   └── css/
+│       └── style.css
+├── templates/
+│   ├── registration/             # login.html, signup.html
+│   └── tasks/                    # dashboard.html, task_form.html, confirm_delete.html
+├── tasks/                        # Tasks app
 │   ├── models.py
 │   ├── views.py
 │   ├── urls.py
-│   ├── templates/tasks/
 │   ├── fixtures/
 │   │   └── tasks_fixture.json
 │   └── management/
 │       └── commands/
 │           └── populate_db.py
-├── users/                # Users app (auth + profiles)
+├── users/                        # Users app (auth + profiles)
 │   ├── models.py
 │   ├── views.py
+│   ├── urls.py
 │   └── ...
-├── templates/
-│   └── registration/     # login.html, signup.html
-│   └── tasks/ # dashboard.html, task_form.html, confirm_delete.html
-├── static/
-│   └── css/
-│       └── style.css
+├── todolist/                     # Django project settings
+│   ├── settings.py
+│   ├── urls.py
+│   └── ...
 ```
 
 ---
