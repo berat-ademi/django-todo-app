@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+  <h2 class="mb-4">Update Profile</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if user.profile.profile_picture %}
+      <div class="mb-3">
+        <label><strong>Current Profile Picture:</strong></label><br>
+        <img src="{{ user.profile.picture_url }}" alt="Profile Picture" class="rounded-circle" style="width: 100px; height: 100px;">
+      </div>
+    {% endif %}
+
+    {{ form.as_p }}
+
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-success">Save</button>
+      <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

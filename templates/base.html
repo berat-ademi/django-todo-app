@@ -10,7 +10,7 @@
     </head>
     <body style="margin: 20px;"></body>
         <div class="d-flex flex-column justify-content-center align-items-center mb-4 text-center">
-            <h2>Code Challange</h2>
+            <h2>Your Tasks</h2>
         </div>
         <nav class="navbar navbar-light bg-light px-3" style="margin-bottom: 20px;">
             <div class="container-fluid">
@@ -19,6 +19,7 @@
                     {% if user.is_authenticated %}
                     <img src="{{ user.profile.picture_url }}" alt="Profile Picture" class="rounded-circle me-2" style="width: 40px; height: 40px;">
                         <span class="me-3">{{ user.username }}</span>
+                        <a href="{% url 'profile_update' %}" class="btn btn-outline-primary me-2">Edit Profile</a>
                         <a href="{% url 'logout' %}" class="btn btn-outline-secondary">Logout</a>
                     {% else %}
                         <a href="{% url 'login' %}" class="btn btn-outline-primary">Login</a>

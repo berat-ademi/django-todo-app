@@ -24,10 +24,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('', users_views.home_redirect, name='home'),
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/', users_views.signup, name='signup'),
     path('tasks/', include('tasks.urls')),
+    path('users/', include('users.urls')),
 ]
 
 # Serve media files (profile pics) in development
