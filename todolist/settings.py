@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h+4i3x5az5fgi!q7r=p!p(wi09h64q_szyu%8jb(l!q6bbnrbf'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Application definition
 
@@ -76,12 +76,30 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Function to auto-detect Docker environment
+def running_in_docker():
+    return os.path.exists('/.dockerenv')
+
+if running_in_docker():
+    # PostgreSQL settings for Docker environment
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME', 'postgres'),
+            'USER': os.getenv('DB_USER', 'postgres'),
+            'PASSWORD': os.getenv('DB_PASSWORD', 'postgres'),
+            'HOST': os.getenv('DB_HOST', 'db'),
+            'PORT': os.getenv('DB_PORT', '5432'),
+        }
     }
-}
+else:
+    # SQLite settings for local development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
