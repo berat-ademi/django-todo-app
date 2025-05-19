@@ -13,51 +13,97 @@ A simple, user-specific to-do list application built with Django. Authenticated 
 - Due date and optional notes for each task
 - Profile picture upload (bonus feature)
 - Responsive UI using Bootstrap
+- Dockerized setup for development and production environments
+- Environment-based configuration using `.env` files
+
+---
+
+### Prerequisites
+
+- Docker
+- Docker Compose
+- Alternatively: Python 3.9+ and pip (for manual setup)
 
 ---
 
 ## 📦 Setup Instructions
 
-1. Clone the repository
+### ⚙️ Environment Configuration
 
-   `git clone https://github.com/berat-ademi/django-todo-app.git`
+1. Copy the example environment file:
 
-   `cd django-todo-app`
+```bash
+cp .env.template .env
+```
 
-2. Create a virtual environment
+2. Edit `.env` and replace placeholder values with your local credentials and secret key.
 
-   `python -m venv venv`
+---
 
-   `source venv/bin/activate`
+### 🐳 Using Docker (Recommended)
 
-   (On Windows: `venv\Scripts\activate`)
+1. Build and start the containers:
 
-3. Install dependencies
+```bash
+docker-compose up --build
+```
 
-   `pip install -r requirements.txt`
+2. Create a superuser:
 
-4. Apply migrations
+```bash
+docker-compose exec web python manage.py createsuperuser
+```
 
-   `python manage.py migrate`
+3. Access the app:
 
-5. (Optional) Seed the database with one user and some tasks
+- Application: http://localhost:8000  
+- Admin panel: http://localhost:8000/admin
 
-   `python manage.py populate_db`
+---
 
-   ✅ Creates:
-   - user: `testuser`
-   - password: `password123`
-   - email: `testuser@example.com`
-   - profile with default image
-   - tasks from `tasks/fixtures/tasks_fixture.json`
+### 💻 Manual Setup (Without Docker)
 
-6. Run the development server
+1. Create a virtual environment:
 
-   `python manage.py runserver`
+```bash
+python -m venv venv
+source venv/bin/activate        # On Windows: venv\Scripts\activate
+```
 
-7. Open in your browser
+2. Install dependencies:
 
-   http://127.0.0.1:8000/
+```bash
+pip install -r requirements.txt
+```
+
+3. Apply migrations:
+
+```bash
+python manage.py migrate
+```
+
+4. (Optional) Seed the database with one user and some tasks:
+
+```bash
+python manage.py populate_db
+```
+
+✅ Creates:
+- user: `testuser`
+- password: `password123`
+- email: `testuser@example.com`
+- profile with default image
+- tasks from `tasks/fixtures/tasks_fixture.json`
+
+5. Run the development server:
+
+```bash
+python manage.py runserver
+```
+
+6. Open in your browser:
+
+http://127.0.0.1:8000/
 
 ---
 
@@ -65,8 +111,9 @@ A simple, user-specific to-do list application built with Django. Authenticated 
 
 Run basic tests with:
 
-   `python manage.py test`
-
+```bash
+python manage.py test
+```
 
 ---
 
@@ -83,10 +130,14 @@ Run basic tests with:
 
 ```plaintext
 django_todo_app/          # Root project folder
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
 ├── manage.py
 ├── db.sqlite3
 ├── README.md
 ├── .gitignore
+├── .env.template                 # Example env file for setup
 ├── media/                        # For uploaded/profile images
 │   └── profile_pics/
 │       └── default.jpg
@@ -110,10 +161,10 @@ django_todo_app/          # Root project folder
 │   ├── views.py
 │   ├── urls.py
 │   └── ...
-├── todolist/                     # Django project settings
-│   ├── settings.py
-│   ├── urls.py
-│   └── ...
+└── todolist/                     # Django project settings
+    ├── settings.py
+    ├── urls.py
+    └── ...
 ```
 
 ---
@@ -124,13 +175,15 @@ To access the Django admin panel:
 
 1. Create a superuser (if you haven't already):
 
-   `python manage.py createsuperuser`
+```bash
+python manage.py createsuperuser
+```
 
 2. Follow the prompts to set `username`, `email`, and `password`.
 
-3. Then visit the admin panel:
+3. Visit the admin panel:
 
-   http://127.0.0.1:8000/admin
+http://127.0.0.1:8000/admin
 
 Use your superuser credentials to log in.
 
